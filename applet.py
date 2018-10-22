@@ -60,8 +60,9 @@ class App():
 class RandomButton():
     def __init__(self, winWidth, winHeight):
         self.radius = random.randint(10, 60)
-        self.center = Point(random.randint(self.radius/2, winWidth - (self.radius/2)), random.randint(self.radius/2, winHeight - (self.radius/2)))
+        self.center = Point(random.randint(self.radius, winWidth - self.radius), random.randint(self.radius, winHeight - self.radius))
         self.circleObj = Circle(self.center, self.radius)
+        self.circleObj.setFill("blue")
         self.timeOfCreation = seconds_to_milliseconds(time.time())
 
     def draw(self, window):
@@ -79,7 +80,11 @@ def main ():
 
     app = App(iterations, outfilename)
 
+    startText = Text(Point(app.winHeight / 2, app.winWidth / 2), "Click anywhere to start")
+    startText.draw(app.window)
+
     app.lastMouseStartPos = app.window.getMouse()
+    startText.undraw()
     app.recycleCurrentButton(app.window)
     successfulClicks = 0
     while successfulClicks < app.iterations:
