@@ -76,7 +76,7 @@ class RandomButton():
 
 def main ():
     iterations = input("Number of clicks to record:")
-    outfilename = raw_input("Filename for output file:")
+    outfilename = input("Filename for output file:")
 
     app = App(iterations, outfilename)
 
@@ -87,7 +87,7 @@ def main ():
     startText.undraw()
     app.recycleCurrentButton(app.window)
     successfulClicks = 0
-    while successfulClicks < app.iterations:
+    while successfulClicks < int(app.iterations):
         clickPoint = app.window.getMouse()
         clickTime = time.time()
         if app.clickIsInCurrentButton(clickPoint):
